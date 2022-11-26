@@ -39,6 +39,9 @@ public class StudentDAO {
         Transaction trans = session.beginTransaction();
         Student student = session.load(Student.class, std.getRollno());
         student.setName(std.getName());
+        student.setBranch(std.getBranch());
+        student.setYear(std.getYear());
+        student.setCollege(std.getCollege());
         session.update(student);
         trans.commit();
         session.close();

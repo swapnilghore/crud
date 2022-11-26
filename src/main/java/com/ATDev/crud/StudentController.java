@@ -22,11 +22,9 @@ public class StudentController {
         return ss.addStudent(stud);
     }
 
-    @PutMapping("/updatestudent") // Update the existing record in the database.
-    public String updateStudent(@RequestParam String rno, @RequestParam String name) {
-        int newrno = Integer.parseInt(rno);
-        Student s = new Student(newrno, name);
-        return ss.updateStudent(s);
+    @PutMapping("/updatestudent/stud") // Update the existing record in the database.
+    public String updateStudent(@RequestBody Student stud) {
+        return ss.updateStudent(stud);
     }
 
     @DeleteMapping("/deletestudent/{rno}") // Delete the record from the database.

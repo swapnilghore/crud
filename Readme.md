@@ -28,9 +28,9 @@ It will perform operations to read, add, update, delete the record of Student fr
 ### Get a single students from database
 
 ```http
-  PUT /updatestudent
+  PUT /updatestudent/stud
 ```
-#### sample url = localhost:8080/updatestudent?rno=10&name=Ram
+#### sample url = localhost:8080/updatestudent/stud
 
 ### Get a single students from database
 
