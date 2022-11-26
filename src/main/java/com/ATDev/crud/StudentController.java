@@ -1,51 +1,36 @@
 package com.ATDev.crud;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
-
 @RestController
 public class StudentController {
-	
-	@Autowired
-	StudentService ss;
-	
-	@GetMapping("/demo")
-	String demo() {
-		return "This is demo";
-	}
+    @Autowired
+    StudentService ss;
 
-	@GetMapping("/getallstudents")
-	public List<Student> getAllStudents(){
-		return ss.getAllStudents();
-	}
+    @GetMapping("/getallstudents") // Gives all the records in database.
+    public List<Student> getAllStudents() {
+        return ss.getAllStudents();
+    }
 
-	@GetMapping("/getstudent/{id}")
-	public Student getStudent(@PathVariable("id") int id){
-		return ss.getStudent(id);
-	}
+    @GetMapping("/getstudent/{rno}") // Gives single Record from the database.
+    public Student getStudent(@PathVariable("rno") int rno) {
+        return ss.getStudent(rno);
+    }
 
-	@PostMapping("/addstudent/stud")
-	public String addStudent(@RequestBody Student stud){
-		return ss.addStudent(stud);
-	}
+    @PostMapping("/addstudent/stud") // Add new Record into the database.
+    public String addStudent(@RequestBody Student stud) {
+        return ss.addStudent(stud);
+    }
 
-	@PutMapping("/updatestudent")
-	public String updateStudent(@RequestParam String id, @RequestParam String name){
-		int newid = Integer.parseInt(id);
-		Student s = new Student(newid, name);
-		System.out.println(s);
-		System.out.println("InController");
-		ss.updateStudent(s);
-		return "Record updated";
-	}
+    @PutMapping("/updatestudent") // Update the existing record in the database.
+    public String updateStudent(@RequestParam String rno, @RequestParam String name) {
+        int newrno = Integer.parseInt(rno);
+        Student s = new Student(newrno, name);
+        return ss.updateStudent(s);
+    }
 
-	@DeleteMapping("/deletestudent/{id}")
-	public String deleteStudent(@PathVariable("id") int id){
-
-		return ss.deleteStudent(id);
-	}
-
+    @DeleteMapping("/deletestudent/{rno}") // Delete the record from the database.
+    public String deleteStudent(@PathVariable("rno") int rno) {
+        return ss.deleteStudent(rno);
+    }
 }
